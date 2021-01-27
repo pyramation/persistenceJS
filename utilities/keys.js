@@ -37,7 +37,7 @@ function createWallet(mnemonic, bip39Passphrase = "") {
 }
 
 function getWalletPath() {
-    return "m/44'/118'/0'/0/0"
+    return "m/44'/330'/0'/0/0"
 }
 
 function createStore(mnemonic, password) {

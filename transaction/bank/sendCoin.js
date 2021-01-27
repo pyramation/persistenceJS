@@ -20,7 +20,7 @@ class bank extends persistenceClass {
                     "chain_id":chain_id,
                     "memo":memo
                 },
-                "amount":[{
+                "coins":[{
                     "denom":denom,
                     "amount":amount
                 }]

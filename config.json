@@ -1,7 +1,7 @@
 {
   "testURL": "http://localhost:1317",
   "chain_id": "test",
-  "prefix": "cosmos",
+  "prefix": "terra",
   "IDSeparator": ".",
   "FirstOrderCompositeIDSeparator": "|",
   "SecondOrderCompositeIDSeparator": "*",

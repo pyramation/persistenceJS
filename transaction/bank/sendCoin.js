@@ -7,7 +7,7 @@ class bank extends persistenceClass {
     async sendCoin(chain_id, mnemonic, address, denom, amount, feesAmount, feesToken, gas, mode, memo = "") {
         let path = this.path
         const wallet = keys.getWallet(mnemonic);
-    
+
         let options = {
             'method': 'POST',
             'url': path + '/bank/accounts/' + address + '/transfers',
@@ -15,42 +15,40 @@ class bank extends persistenceClass {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "base_req":{
-                    "from":wallet.address,
-                    "chain_id":chain_id,
-                    "memo":memo
+                "base_req": {
+                    "from": wallet.address,
+                    "chain_id": chain_id,
+                    "memo": memo,
+                    "gas_prices": [{
+                        "denom": "ukrw",
+                        "amount": "1.7805"
+                    }]
                 },
-                "coins":[{
-                    "denom":denom,
-                    "amount":amount
+                "coins": [{
+                    "denom": denom,
+                    "amount": amount
                 }]
             })
         };
-        return new Promise(function(resolve, reject) {
+
+        return new Promise(function (resolve, reject) {
             request(options, function (error, response) {
                 if (error) {
                     reject(error);
                 }
-    
+
                 let result = JSON.parse(response.body)
-    
                 let tx = {
                     msg: result.value.msg,
-                    fee: {
-                        amount: [{
-                            amount: String(feesAmount),
-                            denom: feesToken
-                        }],
-                        gas: String(gas)
-                    },
-                    signatures:null,
-                    memo:result.value.memo
+                    fee: result.value.fee,
+                    signatures: null,
+                    memo: result.value.memo
                 }
                 resolve(broadcast.broadcastTx(path, wallet, tx, chain_id, mode));
             });
         }).catch(function (error) {
             console.log("Promise Rejected: " + error);
-            return(error)
+            return (error)
         });
     }
 }

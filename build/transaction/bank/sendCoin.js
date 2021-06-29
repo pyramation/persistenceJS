@@ -60,7 +60,6 @@ class bank extends persistenceJS_1.Persistence {
                     if (error) {
                         reject(error);
                     }
-                    console.log((response.body));
                     let result = JSON.parse(response.body);
                     resolve(broadcastTx_1.broadcastTx(path, wallet, mnemonic, result.value, chain_id, result.value.fee.gas, config.GASPRICE, mode));
                 });
@@ -83,6 +82,7 @@ class bank extends persistenceJS_1.Persistence {
                         from: wallet.address,
                         chain_id: chain_id,
                         memo: memo,
+                        fees: [{ amount: String(feesAmount), denom: feesToken }],
                     },
                     amount: [
                         {

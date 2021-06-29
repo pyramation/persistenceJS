@@ -68,7 +68,21 @@
     /* Advanced Options */
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true,       /* Disallow inconsistently-cased references to the same file. */
-    "resolveJsonModule": true                       /* allow json file. */
+    "resolveJsonModule": true,                       /* allow json file. */
+    "outDir": "build",
+    "baseUrl": ".",
+    "declaration": true,
+    "moduleResolution": "node",
+    "newLine": "LF",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "pretty": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "lib": ["es2018", "dom"]
   },
   "exclude": [
     "node_modules",

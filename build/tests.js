@@ -103,7 +103,7 @@ async function test() {
         console.log("\n\n**TX failed for nub** :" + _res.rawLog);
     }
     if (result) {
-        let res = await sendCoin.sendCoin(wallet.address, config.chain_id, mnemonic, "stake", "1000000", 25, "stake", 200000, "block", "");
+        let res = await sendCoin.sendCoin(wallet.address, config.chain_id, wallet.address, mnemonic, "stake", "1000000", 25, "stake", 200000, "block", "");
         let check = await helper_1.checkRawLog(res.rawLog);
         if (check) {
             console.log("\n\n**TX HASH for Send Coin** :" + res.transactionHash);

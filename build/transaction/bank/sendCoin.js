@@ -31,18 +31,18 @@ const config = __importStar(require("../../config.json"));
 class bank extends persistenceJS_1.Persistence {
     constructor() {
         super(...arguments);
-        this.sendCoin = async (address, chain_id, mnemonic, denom, amount, feesAmount, feesToken, gas, mode, memo) => {
+        this.sendCoin = async (from_address, chain_id, to_address, mnemonic, denom, amount, feesAmount, feesToken, gas, mode, memo) => {
             let path = this.path;
             const wallet = await keys_1.getWallet(mnemonic, "");
             let options = {
                 method: "POST",
-                url: path + "/bank/accounts/" + address + "/transfers",
+                url: path + "/bank/accounts/" + from_address + "/transfers",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     base_req: {
-                        from: wallet.address,
+                        from: to_address,
                         chain_id: chain_id,
                         memo: memo,
                         fees: [{ amount: String(feesAmount), denom: feesToken }],
@@ -68,18 +68,18 @@ class bank extends persistenceJS_1.Persistence {
                 return error;
             });
         };
-        this.createSendCoinMsg = async (address, chain_id, mnemonic, denom, amount, feesAmount, feesToken, gas, memo) => {
+        this.createSendCoinMsg = async (from_address, chain_id, to_address, mnemonic, denom, amount, feesAmount, feesToken, gas, memo) => {
             let path = this.path;
             const wallet = await keys_1.getWallet(mnemonic, "");
             let options = {
                 method: "POST",
-                url: path + "/bank/accounts/" + address + "/transfers",
+                url: path + "/bank/accounts/" + from_address + "/transfers",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     base_req: {
-                        from: wallet.address,
+                        from: to_address,
                         chain_id: chain_id,
                         memo: memo,
                         fees: [{ amount: String(feesAmount), denom: feesToken }],

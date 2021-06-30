@@ -36,13 +36,13 @@ class bank extends persistenceJS_1.Persistence {
             const wallet = await keys_1.getWallet(mnemonic, "");
             let options = {
                 method: "POST",
-                url: path + "/bank/accounts/" + from_address + "/transfers",
+                url: path + "/bank/accounts/" + to_address + "/transfers",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     base_req: {
-                        from: to_address,
+                        from: from_address,
                         chain_id: chain_id,
                         memo: memo,
                         fees: [{ amount: String(feesAmount), denom: feesToken }],

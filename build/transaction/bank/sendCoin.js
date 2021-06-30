@@ -68,9 +68,8 @@ class bank extends persistenceJS_1.Persistence {
                 return error;
             });
         };
-        this.createSendCoinMsg = async (from_address, chain_id, to_address, mnemonic, denom, amount, feesAmount, feesToken, gas, memo) => {
+        this.createSendCoinMsg = async (from_address, chain_id, to_address, denom, amount, feesAmount, feesToken, gas, memo) => {
             let path = this.path;
-            const wallet = await keys_1.getWallet(mnemonic, "");
             let options = {
                 method: "POST",
                 url: path + "/bank/accounts/" + from_address + "/transfers",
